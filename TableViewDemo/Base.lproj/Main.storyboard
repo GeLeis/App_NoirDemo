@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="3Nk-QJ-fNL">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="BnD-xp-SKO">
+            <objects>
+                <navigationController id="3Nk-QJ-fNL" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="9dF-Xc-isA">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="0ya-Cy-L2v" kind="relationship" relationship="rootViewController" id="TzP-3b-v71"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xYR-lA-rd8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="178" y="158"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="IrL-zw-BOG">
+            <objects>
+                <tableViewController id="2v2-BA-mJk" customClass="ViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="gaV-9u-454">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <connections>
+                            <outlet property="dataSource" destination="2v2-BA-mJk" id="agH-DS-e7f"/>
+                            <outlet property="delegate" destination="2v2-BA-mJk" id="0ui-VY-jwm"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="Hra-gc-Awn"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gzS-rK-TSt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="861" y="839"/>
+        </scene>
+        <!--Home View Controller-->
+        <scene sceneID="Gh3-F5-3oP">
+            <objects>
+                <viewController id="0ya-Cy-L2v" customClass="HomeViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="nnl-Et-6EZ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ASU-cj-HLr">
+                                <rect key="frame" x="142" y="465" width="131" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="点击进入TableView"/>
+                                <connections>
+                                    <action selector="enterAction:" destination="0ya-Cy-L2v" eventType="touchUpInside" id="cjL-sb-AwS"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="dCq-NU-sLk"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="N5e-cP-A7J"/>
+                    <connections>
+                        <outlet property="enterBtn" destination="ASU-cj-HLr" id="kDZ-Gx-9ON"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TQf-Ki-bBJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1020" y="149"/>
+        </scene>
+        <!--DetailSB View Controller-->
+        <scene sceneID="Uek-Ak-eFB">
+            <objects>
+                <viewController id="sTS-qD-R3H" customClass="Detail_SBViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Fqg-AH-n6U">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HSu-dn-uBM">
+                                <rect key="frame" x="87" y="384" width="231" height="295"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <viewLayoutGuide key="contentLayoutGuide" id="V05-aQ-cnD"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="YS1-7H-Oke"/>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="O3Q-Gp-Snd"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UY4-Dh-nRo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1892.753623188406" y="148.66071428571428"/>
+        </scene>
+    </scenes>
+</document>
