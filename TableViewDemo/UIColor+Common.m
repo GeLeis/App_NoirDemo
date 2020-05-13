@@ -8,6 +8,7 @@
 
 #import "UIColor+Common.h"
 #import <YLT_BaseLib/NSObject+YLT_Extension.h>
+#import <Aspects.h>
 
 //是否黑白化,1表示开启
 #define monochromatic 1
@@ -32,6 +33,19 @@
     [UIColor ylt_swizzleClassMethod:@selector(gl_purpleColor) withMethod:@selector(purpleColor)];
     [UIColor ylt_swizzleClassMethod:@selector(gl_brownColor) withMethod:@selector(brownColor)];
     [UIColor ylt_swizzleClassMethod:@selector(gl_colorWithWhite:alpha:) withMethod:@selector(colorWithWhite:alpha:)];
+    Class cls = NSClassFromString(@"UIDynamicSystemColor");
+    [cls ylt_swizzleInstanceMethod:NSSelectorFromString(@"initWithName:colorsByThemeKey:") withMethod:@selector(gl_initWithName:colorsByThemeKey:)];
+}
+
+- (id)gl_initWithName:(id)name colorsByThemeKey:(id)key {
+//    NSLog(@"name=%@  key =%@ ",name,key);
+    if (monochromatic == 1) {
+        if ([name isEqualToString:@"systemBlueColor"]) {
+//                [UIColor systemBlueColor];
+            return [UIColor blueColor];
+        }
+    }
+   return [self gl_initWithName:name colorsByThemeKey:key];
 }
 
 + (UIColor *)gl_colorWithRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue alpha:(CGFloat)alpha {

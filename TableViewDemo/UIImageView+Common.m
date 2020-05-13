@@ -12,7 +12,7 @@
 #import <objc/runtime.h>
 
 //是否黑白化,1表示开启
-#define monochromatic 0
+#define monochromatic 1
 
 @implementation UIImageView (Common)
 
@@ -32,7 +32,7 @@
     //滤镜处理
     //CIPhotoEffectNoir黑白
     //CIPhotoEffectMono单色
-    NSString *filterName = @"CIPhotoEffectNoir";
+    NSString *filterName = @"CIPhotoEffectMono";
     CIFilter *filter = [CIFilter filterWithName:filterName];
     CIImage *inputImage = [[CIImage alloc] initWithImage:image];
     [filter setValue:inputImage forKey:kCIInputImageKey];

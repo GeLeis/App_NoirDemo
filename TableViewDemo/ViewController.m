@@ -26,6 +26,7 @@
     self.navigationItem.title = @"TableViewVC";
     //tableView注册重用cell
     [self.tableView registerClass:TableViewListCell.class forCellReuseIdentifier:NSStringFromClass(TableViewListCell.class)];
+//    [[FLEXManager sharedManager] showExplorer];
 }
 
 
