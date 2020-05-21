@@ -52,7 +52,8 @@
     //如果是单色模式(黑白模式),则平均r、g、b值
     if (monochromatic == 1) {
         //r,g,b权重调整,防止出现,1 0 0 、0 1 0,0 0 1同样的结果
-        CGFloat brightness = (red * 87 + 68 * green + 101 * blue) / 256.f;
+        //0.2126，0.7152，0.0722 这三个是根据人眼对r,g,b三个颜色面感的强弱算出来的
+        CGFloat brightness = (red * 0.2126 + 0.7152 * green + 0.0722 * blue);
 //        CGFloat brightness = (red + green + blue) / 3.f;
         return [self gl_colorWithRed:brightness green:brightness blue:brightness alpha:alpha];
     }

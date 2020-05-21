@@ -16,6 +16,7 @@ PODS:
     - AFNetworking/NSURLSession
   - Aspects (1.4.1)
   - FastCoding (3.3)
+  - FBRetainCycleDetector (0.1.4)
   - FLEX (4.1.1)
   - FMDB (2.7.5):
     - FMDB/standard (= 2.7.5)
@@ -23,6 +24,8 @@ PODS:
   - Masonry (1.1.0)
   - MJExtension (3.2.1)
   - MJRefresh (3.3.1)
+  - MLeaksFinder (1.0.0):
+    - FBRetainCycleDetector
   - ReactiveObjC (3.1.1)
   - SDWebImage (5.6.1):
     - SDWebImage/Core (= 5.6.1)
@@ -43,6 +46,7 @@ PODS:
 
 DEPENDENCIES:
   - FLEX
+  - MLeaksFinder
   - YLT_BaseLib
   - YLT_Kit
 
@@ -51,11 +55,13 @@ SPEC REPOS:
     - AFNetworking
     - Aspects
     - FastCoding
+    - FBRetainCycleDetector
     - FLEX
     - FMDB
     - Masonry
     - MJExtension
     - MJRefresh
+    - MLeaksFinder
     - ReactiveObjC
     - SDWebImage
     - YLT_BaseLib
@@ -65,16 +71,18 @@ SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
   Aspects: 7595ba96a6727a58ebcbfc954497fc5d2fdde546
   FastCoding: 3b590f7143a229780fa744b35084d85d9461587e
+  FBRetainCycleDetector: 46f8179bbb1c587deee3ea838a1a3ee02acf5015
   FLEX: 81096107977a09836eb440173010ceeef01105d6
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MJExtension: 635f2c663dcb1bf76fa4b715b2570a5710aec545
   MJRefresh: eeda70fbf0ad277f3178cef1cd0c3532591d6237
+  MLeaksFinder: 8c435bd2f6d070af18cff082b503b21adc130fc0
   ReactiveObjC: 011caa393aa0383245f2dcf9bf02e86b80b36040
   SDWebImage: 7edb9c3ea661e77a66661f7f044de8c1b55d1120
   YLT_BaseLib: 80bc4b4c412bafd2bf74f5a8736b9df6ebcf09ac
   YLT_Kit: bcf6196fffc590e03493617f5db37e717c13070d
 
-PODFILE CHECKSUM: 09d2bfffce4b07c482089d529e0a43cc8e8d4f93
+PODFILE CHECKSUM: b6ee5ec6e4c807ffedfd3a98a49b8e8b5aa9cbf7
 
 COCOAPODS: 1.8.3
