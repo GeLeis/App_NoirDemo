@@ -15,6 +15,7 @@
 
 @interface ViewController ()
 @property (nonatomic, copy) NSArray *dataLists;
+@property (nonatomic, strong) NSTimer *timer;
 @end
 
 @implementation ViewController
@@ -27,11 +28,36 @@
     //tableView注册重用cell
     [self.tableView registerClass:TableViewListCell.class forCellReuseIdentifier:NSStringFromClass(TableViewListCell.class)];
 //    [[FLEXManager sharedManager] showExplorer];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(timeTest) userInfo:nil repeats:YES];
+    [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
+    
+//    NSMutableDictionary *arr= [NSMutableDictionary dictionary];
+//    NSObject *obj = nil;
+//    NSString *key = nil;
+//    [arr removeObjectForKey:key];
+    
+//    NSMutableString *str = [NSMutableString string];
+//    NSString *key = nil;
+//    [str appendString:key];
+//    __weak typeof(self) weakself = self;
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        NSLog(@"%@",weakself);
+//    });
 }
 
+- (void)dealloc {
+    NSLog(@"==dealloc==");
+}
+
+- (void)timeTest {
+//    for (int i = 0; i < 20000; i++) {
+//        NSLog(@"%d",i);
+//    }
+    [NSThread sleepForTimeInterval:2];
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return 20;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

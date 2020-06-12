@@ -51,13 +51,20 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ASU-cj-HLr">
-                                <rect key="frame" x="142" y="465" width="131" height="30"/>
+                                <rect key="frame" x="142" y="125" width="131" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="点击进入TableView"/>
                                 <connections>
                                     <action selector="enterAction:" destination="0ya-Cy-L2v" eventType="touchUpInside" id="cjL-sb-AwS"/>
                                 </connections>
                             </button>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oEy-aE-iMd">
+                                <rect key="frame" x="20" y="206" width="300" height="559"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <viewLayoutGuide key="contentLayoutGuide" id="JfW-oX-pPl"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="Bhv-6N-LPl"/>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="dCq-NU-sLk"/>
@@ -65,11 +72,12 @@
                     <navigationItem key="navigationItem" id="N5e-cP-A7J"/>
                     <connections>
                         <outlet property="enterBtn" destination="ASU-cj-HLr" id="kDZ-Gx-9ON"/>
+                        <outlet property="scrollView" destination="oEy-aE-iMd" id="Tmy-UW-An5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TQf-Ki-bBJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1020" y="149"/>
+            <point key="canvasLocation" x="1018.840579710145" y="148.66071428571428"/>
         </scene>
         <!--DetailSB View Controller-->
         <scene sceneID="Uek-Ak-eFB">

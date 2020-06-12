@@ -12,7 +12,7 @@
 #import <objc/runtime.h>
 
 //是否黑白化,1表示开启
-#define monochromatic 1
+#define monochromatic 0
 
 @implementation UIImageView (Common)
 

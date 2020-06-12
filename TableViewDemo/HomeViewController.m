@@ -8,9 +8,11 @@
 
 #import "HomeViewController.h"
 #import "ViewController.h"
+#import "RunloopTaskTool.h"
 
 @interface HomeViewController ()
-
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (nonatomic, strong) NSTimer *timer;
 @end
 
 @implementation HomeViewController
@@ -18,6 +20,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"Home VC";
+    
+    [RunloopTaskTool shareInstance];
+    for (int i =0 ; i < 10; i++) {
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 10 + 100 * i, 100, 20)];
+        label.text = [NSString stringWithFormat:@"label_%d",i];
+        [self.scrollView addSubview:label];
+        [[RunloopTaskTool shareInstance] addTask:^{
+            NSLog(@"========%d",i);
+        } withKey:@(i)];
+    }
+    self.scrollView.contentSize = CGSizeMake(0, 100 * 10 + 10);
+//    self.timer = [NSTimer scheduledTimerWithTimeInterval:4 repeats:YES block:^(NSTimer * _Nonnull timer) {
+//        [NSThread sleepForTimeInterval:2];
+//    }];
+//    [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
 }
 - (IBAction)enterAction:(id)sender {
     ViewController *vc = [[ViewController alloc] init];
