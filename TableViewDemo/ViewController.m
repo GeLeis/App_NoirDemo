@@ -12,6 +12,7 @@
 #import <MJExtension.h>
 #import "UIColor+Common.h"
 #import <FLEX.h>
+#import "GLRunloopTaskTool.h"
 
 @interface ViewController ()
 @property (nonatomic, copy) NSArray *dataLists;
@@ -27,9 +28,13 @@
     self.navigationItem.title = @"TableViewVC";
     //tableView注册重用cell
     [self.tableView registerClass:TableViewListCell.class forCellReuseIdentifier:NSStringFromClass(TableViewListCell.class)];
+//    [[GLRunloopTaskTool shareInstance].taskCache setObject:self forKey:@"task1"];
+//    [[GLRunloopTaskTool shareInstance].taskCache setObject:@"aaaa" forKey:@"task2"];
+//    [[GLRunloopTaskTool shareInstance].taskCache setObject:@"bbbb" forKey:@"task3"];
+//    [[GLRunloopTaskTool shareInstance].taskCache setObject:@"cccc" forKey:@"task4"];
 //    [[FLEXManager sharedManager] showExplorer];
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(timeTest) userInfo:nil repeats:YES];
-    [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
+//    self.timer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(timeTest) userInfo:nil repeats:YES];
+//    [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
     
 //    NSMutableDictionary *arr= [NSMutableDictionary dictionary];
 //    NSObject *obj = nil;
@@ -46,7 +51,8 @@
 }
 
 - (void)dealloc {
-    NSLog(@"==dealloc==");
+//    [_taskTool.taskCache.keyEnumerator allObjects]
+//    NSLog(@"========%@",[GLRunloopTaskTool shareInstance].taskCache);
 }
 
 - (void)timeTest {

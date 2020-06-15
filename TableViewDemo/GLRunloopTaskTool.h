@@ -8,26 +8,20 @@
 
 #import <Foundation/Foundation.h>
 
-NS_ASSUME_NONNULL_BEGIN
-
 @interface GLRunloopTaskTool : NSObject
 + (GLRunloopTaskTool *)shareInstance;
-/**
- 最大保留任务数,默认20
- */
-@property (nonatomic, assign) uint maxTaskCount;
 
-/**
- 添加任务,key存在,则删除原来key对应的task
- 防止cell重用bug
+- (void)addTask:(void(^)(void))task;
 
- @param task 下载任务
- @param key 标记
- */
-- (void)addTask:(void(^)(void))task withKey:(id)key;
+- (void)addTarget:(id)target task:(void(^)(void))task;
 
-//根据key移除task
-- (void)removeTaskByKey:(id)key;
+/// 添加runloop任务
+/// @param target 执行任务的关联目标
+/// @param uniqueKey 任务的唯一key,防止对同一个对象添加相同的任务
+/// @param task 任务
+- (void)addTarget:(id)target uniqueKey:(NSString *)uniqueKey task:(void(^)(void))task;
+
+- (void)remvoeTasks:(id)target;
+
+- (void)remvoeAllTasks;
 @end
-
-NS_ASSUME_NONNULL_END
