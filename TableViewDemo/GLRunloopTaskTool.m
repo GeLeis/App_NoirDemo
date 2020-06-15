@@ -52,12 +52,12 @@ static GLRunloopTaskTool *_taskTool = nil;
     [self.taskCache setObject:taskInfo forKey:tar];
 }
 
-- (void)remvoeTasks:(id)target {
+- (void)removeTasks:(id)target {
     id tar = target ? : self;
     [self.taskCache removeObjectForKey:tar];
 }
 
-- (void)remvoeAllTasks {
+- (void)removeAllTasks {
     [self.taskCache removeAllObjects];
 }
 

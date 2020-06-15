@@ -21,7 +21,7 @@
 /// @param task 任务
 - (void)addTarget:(id)target uniqueKey:(NSString *)uniqueKey task:(void(^)(void))task;
 
-- (void)remvoeTasks:(id)target;
+- (void)removeTasks:(id)target;
 
-- (void)remvoeAllTasks;
+- (void)removeAllTasks;
 @end
