@@ -10,8 +10,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface RunloopTaskTool : NSObject
-+ (RunloopTaskTool *)shareInstance;
+@interface GLRunloopTaskTool : NSObject
++ (GLRunloopTaskTool *)shareInstance;
 /**
  最大保留任务数,默认20
  */

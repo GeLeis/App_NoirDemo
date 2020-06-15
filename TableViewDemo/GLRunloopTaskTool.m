@@ -6,9 +6,9 @@
 //  Copyright © 2020 gelei. All rights reserved.
 //
 
-#import "RunloopTaskTool.h"
+#import "GLRunloopTaskTool.h"
 
-@interface RunloopTaskTool ()
+@interface GLRunloopTaskTool ()
 /**
  存放任务的数组
  */
@@ -21,13 +21,13 @@
 
 @end
 
-@implementation RunloopTaskTool
+@implementation GLRunloopTaskTool
 
-static RunloopTaskTool *_taskTool = nil;
-+ (RunloopTaskTool *)shareInstance {
+static GLRunloopTaskTool *_taskTool = nil;
++ (GLRunloopTaskTool *)shareInstance {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        _taskTool = [[RunloopTaskTool alloc] init];
+        _taskTool = [[GLRunloopTaskTool alloc] init];
         _taskTool.maxTaskCount = 20;
         [_taskTool addRunloopObserver];
     });
@@ -35,9 +35,14 @@ static RunloopTaskTool *_taskTool = nil;
 }
 //添加任务
 - (void)addTask:(void(^)(void))task withKey:(id)key {
-    [self removeTaskByKey:key];
+    id r_key = key;
+    if (!r_key) {
+         r_key = @"gl_runloop_task_tool_placeholder";
+    } else {
+        [self removeTaskByKey:r_key];
+    }
     [self.tasks addObject:task];
-    [self.taskKeys addObject:key];
+    [self.taskKeys addObject:r_key];
     if (self.tasks.count > self.maxTaskCount) {
         [self.tasks removeObjectAtIndex:0];
         [self.taskKeys removeObjectAtIndex:0];
@@ -86,7 +91,7 @@ static void Callback(CFRunLoopObserverRef observer, CFRunLoopActivity activity, 
 //        NSLog(@"activity = %lu",activity);
 //    }
     
-    RunloopTaskTool *taskTool = (__bridge RunloopTaskTool *)(info);
+    GLRunloopTaskTool *taskTool = (__bridge GLRunloopTaskTool *)(info);
     if (resume && taskTool.tasks.count) {
         void(^task)(void) = taskTool.tasks.firstObject;
         //执行任务

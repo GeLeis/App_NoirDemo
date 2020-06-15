@@ -8,7 +8,7 @@
 
 #import "HomeViewController.h"
 #import "ViewController.h"
-#import "RunloopTaskTool.h"
+#import "GLRunloopTaskTool.h"
 
 @interface HomeViewController ()
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -21,12 +21,12 @@
     [super viewDidLoad];
     self.navigationItem.title = @"Home VC";
     
-    [RunloopTaskTool shareInstance];
+    [GLRunloopTaskTool shareInstance];
     for (int i =0 ; i < 10; i++) {
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 10 + 100 * i, 100, 20)];
         label.text = [NSString stringWithFormat:@"label_%d",i];
         [self.scrollView addSubview:label];
-        [[RunloopTaskTool shareInstance] addTask:^{
+        [[GLRunloopTaskTool shareInstance] addTask:^{
             NSLog(@"========%d",i);
         } withKey:@(i)];
     }
