@@ -41,7 +41,11 @@ static GLRunloopTaskTool *_taskTool = nil;
 - (void)addTarget:(id)target uniqueKey:(NSString *)uniqueKey task:(void(^)(void))task {
     //如果target存在task,查看是否需要检查uniqueKey
     id tar = target ? : self;
-    NSMutableDictionary *taskInfo = [NSMutableDictionary dictionaryWithDictionary:[self.taskCache objectForKey:tar]];
+    NSMutableDictionary *taskInfo = [self.taskCache objectForKey:tar];
+    if (!taskInfo) {
+        taskInfo = [NSMutableDictionary dictionary];
+        [self.taskCache setObject:taskInfo forKey:tar];
+    }
     if (uniqueKey) {
         [taskInfo setObject:task forKey:uniqueKey];
     } else {
@@ -49,7 +53,6 @@ static GLRunloopTaskTool *_taskTool = nil;
         [taskInfo setObject:task forKey:key];
     }
     self.increase_Index++;
-    [self.taskCache setObject:taskInfo forKey:tar];
 }
 
 - (void)removeTasks:(id)target {
@@ -74,7 +77,7 @@ static GLRunloopTaskTool *_taskTool = nil;
     defaultModeObsever = CFRunLoopObserverCreate(NULL,
                                                  kCFRunLoopBeforeWaiting,
                                                  YES,
-                                                 NSIntegerMax,
+                                                 INT_MAX,
                                                  &Callback,
                                                  &context
                                                  );
@@ -89,15 +92,26 @@ static GLRunloopTaskTool *_taskTool = nil;
 static void Callback(CFRunLoopObserverRef observer, CFRunLoopActivity activity, void *info){
     GLRunloopTaskTool *taskTool = (__bridge GLRunloopTaskTool *)(info);
     if (taskTool.taskCache.count) {
+        NSLog(@"start task");
         id target = taskTool.taskCache.keyEnumerator.allObjects.firstObject;
+        NSLog(@"target = %@",target);
         NSMutableDictionary *taskInfo = [taskTool.taskCache objectForKey:target];
+        NSLog(@"taskInfo start = %@",taskInfo);
         NSString *taskKey = taskInfo.allKeys.firstObject;
         void(^task)(void) = [taskInfo objectForKey:taskKey];
-        //执行任务
-        task();
+        if (task) {
+            //执行任务
+            task();
+            NSLog(@"excute task=%@",task);
+        }
         [taskInfo removeObjectForKey:taskKey];
+        NSLog(@"taskInfo end = %@",taskInfo);
         if (taskInfo.count == 0) {
             [taskTool.taskCache removeObjectForKey:target];
+            NSLog(@"taskInfo.count== %lu,taskCache.count=%lu",(unsigned long)taskInfo.count,(unsigned long)taskTool.taskCache.count);
+        }
+        if (taskTool.taskCache.count) {
+            CFRunLoopWakeUp(CFRunLoopGetMain());
         }
     }
 }

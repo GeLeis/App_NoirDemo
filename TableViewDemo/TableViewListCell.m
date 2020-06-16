@@ -50,11 +50,16 @@
         @"http://img2.ultimavip.cn/315954bddabf3c22"
     ];
 //    @weakify(self);
-    [[GLRunloopTaskTool shareInstance] addTarget:self uniqueKey:@"draw" task:^{
+    [[GLRunloopTaskTool shareInstance] addTarget:self uniqueKey:@"drawImg" task:^{
+        NSLog(@"img:xxx");
         [self.imgView sd_setImageWithURL:[NSURL URLWithString:imgs[arc4random_uniform(5)]]];
     }];
+    [[GLRunloopTaskTool shareInstance] addTarget:self uniqueKey:@"drawtext" task:^{
+        self.titleLbl.text = data[@"title"];
+        NSLog(@"title:%@",self.titleLbl.text);
+    }];
 //    self.imgView.image = [UIImage imageNamed:data[@"icon"]];
-    self.titleLbl.text = data[@"title"];
+//    self.titleLbl.text = data[@"title"];
     self.titleLbl.textColor = [UIColor ylt_colorWithHexString:data[@"argu1_title_color"]];
     NSLog(@"=============");
 }
