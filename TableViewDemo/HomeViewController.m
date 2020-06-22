@@ -84,9 +84,10 @@
 }
 
 - (void)safeStringTst{
-    NSString *stt = @"abcd";
-//    stt = [stt substringFromIndex:5];
-//    stt = [stt substringWithRange:NSMakeRange(0, 5)];
+    //长度为9或以下时,类型为NSTaggedPointerString
+    NSString *stt = [NSString stringWithFormat:@"%@",@"123"];
+    stt = [stt substringFromIndex:5];
+    stt = [stt substringWithRange:NSMakeRange(0, 5)];
     NSLog(@"\nclass =%@   string =%@ ",stt.class,stt);
     NSLog(@"%d",[stt characterAtIndex:5]);
     

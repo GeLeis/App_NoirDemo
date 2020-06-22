@@ -38,6 +38,10 @@
         glsf_swizzleInstanceMethod(NSClassFromString(@"__NSCFString"), @selector(characterAtIndex:), @selector(glsf_characterAtIndex:));
         glsf_swizzleInstanceMethod(NSClassFromString(@"__NSCFString"), @selector(substringFromIndex:), @selector(glsf_substringFromIndex:));
         glsf_swizzleInstanceMethod(NSClassFromString(@"__NSCFString"), @selector(substringWithRange:), @selector(glsf_substringWithRange:));
+        
+        glsf_swizzleInstanceMethod(NSClassFromString(@"NSTaggedPointerString"), @selector(characterAtIndex:), @selector(glsf_characterAtIndex:));
+        glsf_swizzleInstanceMethod(NSClassFromString(@"NSTaggedPointerString"), @selector(substringFromIndex:), @selector(glsf_substringFromIndex:));
+        glsf_swizzleInstanceMethod(NSClassFromString(@"NSTaggedPointerString"), @selector(substringWithRange:), @selector(glsf_substringWithRange:));
     });
 }
 
