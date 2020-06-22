@@ -8,8 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		2804F9DA243703F8002CA576 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2804F9D9243703F8002CA576 /* HomeViewController.m */; };
+		281F83E8249C9DD700367D2D /* NSMutableArray+GLSafe.m in Sources */ = {isa = PBXBuildFile; fileRef = 281F83E7249C9DD700367D2D /* NSMutableArray+GLSafe.m */; };
+		281F83EB24A05AA500367D2D /* NSDictionary+GLSafe.m in Sources */ = {isa = PBXBuildFile; fileRef = 281F83EA24A05AA500367D2D /* NSDictionary+GLSafe.m */; };
+		281F83EE24A05ECF00367D2D /* NSMutableDictionary+GLSafe.m in Sources */ = {isa = PBXBuildFile; fileRef = 281F83ED24A05ECF00367D2D /* NSMutableDictionary+GLSafe.m */; };
+		281F83F124A0623800367D2D /* NSString+GLSafe.m in Sources */ = {isa = PBXBuildFile; fileRef = 281F83F024A0623800367D2D /* NSString+GLSafe.m */; };
+		281F83F424A07D5600367D2D /* NSMutableString+GLSafe.m in Sources */ = {isa = PBXBuildFile; fileRef = 281F83F324A07D5600367D2D /* NSMutableString+GLSafe.m */; };
 		284263F724642321003960AB /* UIColor+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 284263F624642321003960AB /* UIColor+Common.m */; };
 		2842641F246552ED003960AB /* UIImageView+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 2842641E246552ED003960AB /* UIImageView+Common.m */; };
+		287522FB2499C59E00EEB447 /* NSNull+GLSafe.m in Sources */ = {isa = PBXBuildFile; fileRef = 287522FA2499C59E00EEB447 /* NSNull+GLSafe.m */; };
+		287522FE2499C64100EEB447 /* NSArray+GLSafe.m in Sources */ = {isa = PBXBuildFile; fileRef = 287522FD2499C64100EEB447 /* NSArray+GLSafe.m */; };
+		287523012499EE4200EEB447 /* GLSafeTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 287523002499EE4200EEB447 /* GLSafeTool.m */; };
 		28E784482490DA8F003EE5F2 /* GLRunloopTaskTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 28E784472490DA8F003EE5F2 /* GLRunloopTaskTool.m */; };
 		28FA9E7D243203CE00001EF6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 28FA9E7C243203CE00001EF6 /* AppDelegate.m */; };
 		28FA9E80243203CE00001EF6 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 28FA9E7F243203CE00001EF6 /* SceneDelegate.m */; };
@@ -29,10 +37,26 @@
 		0234A0412B15F2C09911FC3D /* Pods-TableViewDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TableViewDemo.release.xcconfig"; path = "Target Support Files/Pods-TableViewDemo/Pods-TableViewDemo.release.xcconfig"; sourceTree = "<group>"; };
 		2804F9D8243703F7002CA576 /* HomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		2804F9D9243703F8002CA576 /* HomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		281F83E6249C9DD700367D2D /* NSMutableArray+GLSafe.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+GLSafe.h"; sourceTree = "<group>"; };
+		281F83E7249C9DD700367D2D /* NSMutableArray+GLSafe.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+GLSafe.m"; sourceTree = "<group>"; };
+		281F83E924A05AA500367D2D /* NSDictionary+GLSafe.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+GLSafe.h"; sourceTree = "<group>"; };
+		281F83EA24A05AA500367D2D /* NSDictionary+GLSafe.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+GLSafe.m"; sourceTree = "<group>"; };
+		281F83EC24A05ECF00367D2D /* NSMutableDictionary+GLSafe.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+GLSafe.h"; sourceTree = "<group>"; };
+		281F83ED24A05ECF00367D2D /* NSMutableDictionary+GLSafe.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+GLSafe.m"; sourceTree = "<group>"; };
+		281F83EF24A0623800367D2D /* NSString+GLSafe.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+GLSafe.h"; sourceTree = "<group>"; };
+		281F83F024A0623800367D2D /* NSString+GLSafe.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+GLSafe.m"; sourceTree = "<group>"; };
+		281F83F224A07D5600367D2D /* NSMutableString+GLSafe.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSMutableString+GLSafe.h"; sourceTree = "<group>"; };
+		281F83F324A07D5600367D2D /* NSMutableString+GLSafe.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSMutableString+GLSafe.m"; sourceTree = "<group>"; };
 		284263F524642321003960AB /* UIColor+Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+Common.h"; sourceTree = "<group>"; };
 		284263F624642321003960AB /* UIColor+Common.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Common.m"; sourceTree = "<group>"; };
 		2842641D246552ED003960AB /* UIImageView+Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImageView+Common.h"; sourceTree = "<group>"; };
 		2842641E246552ED003960AB /* UIImageView+Common.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+Common.m"; sourceTree = "<group>"; };
+		287522F92499C59E00EEB447 /* NSNull+GLSafe.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSNull+GLSafe.h"; sourceTree = "<group>"; };
+		287522FA2499C59E00EEB447 /* NSNull+GLSafe.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSNull+GLSafe.m"; sourceTree = "<group>"; };
+		287522FC2499C64100EEB447 /* NSArray+GLSafe.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+GLSafe.h"; sourceTree = "<group>"; };
+		287522FD2499C64100EEB447 /* NSArray+GLSafe.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+GLSafe.m"; sourceTree = "<group>"; };
+		287522FF2499EE4200EEB447 /* GLSafeTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLSafeTool.h; sourceTree = "<group>"; };
+		287523002499EE4200EEB447 /* GLSafeTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GLSafeTool.m; sourceTree = "<group>"; };
 		28E784462490DA8F003EE5F2 /* GLRunloopTaskTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLRunloopTaskTool.h; sourceTree = "<group>"; };
 		28E784472490DA8F003EE5F2 /* GLRunloopTaskTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLRunloopTaskTool.m; sourceTree = "<group>"; };
 		28FA9E78243203CE00001EF6 /* TableViewDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TableViewDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -71,6 +95,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		287522F82499C53300EEB447 /* GLSafe */ = {
+			isa = PBXGroup;
+			children = (
+				287522F92499C59E00EEB447 /* NSNull+GLSafe.h */,
+				287522FA2499C59E00EEB447 /* NSNull+GLSafe.m */,
+				287522FC2499C64100EEB447 /* NSArray+GLSafe.h */,
+				287522FD2499C64100EEB447 /* NSArray+GLSafe.m */,
+				281F83E6249C9DD700367D2D /* NSMutableArray+GLSafe.h */,
+				281F83E7249C9DD700367D2D /* NSMutableArray+GLSafe.m */,
+				281F83E924A05AA500367D2D /* NSDictionary+GLSafe.h */,
+				281F83EA24A05AA500367D2D /* NSDictionary+GLSafe.m */,
+				281F83EC24A05ECF00367D2D /* NSMutableDictionary+GLSafe.h */,
+				281F83ED24A05ECF00367D2D /* NSMutableDictionary+GLSafe.m */,
+				281F83EF24A0623800367D2D /* NSString+GLSafe.h */,
+				281F83F024A0623800367D2D /* NSString+GLSafe.m */,
+				281F83F224A07D5600367D2D /* NSMutableString+GLSafe.h */,
+				281F83F324A07D5600367D2D /* NSMutableString+GLSafe.m */,
+				287522FF2499EE4200EEB447 /* GLSafeTool.h */,
+				287523002499EE4200EEB447 /* GLSafeTool.m */,
+			);
+			path = GLSafe;
+			sourceTree = "<group>";
+		};
 		28FA9E6F243203CE00001EF6 = {
 			isa = PBXGroup;
 			children = (
@@ -92,6 +139,7 @@
 		28FA9E7A243203CE00001EF6 /* TableViewDemo */ = {
 			isa = PBXGroup;
 			children = (
+				287522F82499C53300EEB447 /* GLSafe */,
 				28FA9E7B243203CE00001EF6 /* AppDelegate.h */,
 				28FA9E7C243203CE00001EF6 /* AppDelegate.m */,
 				28FA9E7E243203CE00001EF6 /* SceneDelegate.h */,
@@ -254,18 +302,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				287522FB2499C59E00EEB447 /* NSNull+GLSafe.m in Sources */,
 				28E784482490DA8F003EE5F2 /* GLRunloopTaskTool.m in Sources */,
 				28FA9E9C24321B0A00001EF6 /* FavoriteViewController.m in Sources */,
+				281F83F124A0623800367D2D /* NSString+GLSafe.m in Sources */,
 				28FA9E83243203CE00001EF6 /* ViewController.m in Sources */,
 				28FA9E7D243203CE00001EF6 /* AppDelegate.m in Sources */,
 				28FA9E8E243203D300001EF6 /* main.m in Sources */,
 				284263F724642321003960AB /* UIColor+Common.m in Sources */,
 				28FA9E80243203CE00001EF6 /* SceneDelegate.m in Sources */,
 				2842641F246552ED003960AB /* UIImageView+Common.m in Sources */,
+				281F83E8249C9DD700367D2D /* NSMutableArray+GLSafe.m in Sources */,
 				2804F9DA243703F8002CA576 /* HomeViewController.m in Sources */,
+				287522FE2499C64100EEB447 /* NSArray+GLSafe.m in Sources */,
 				28FA9E9F24321BD000001EF6 /* DataManager.m in Sources */,
 				28FA9E962432076600001EF6 /* TableViewListCell.m in Sources */,
+				281F83EB24A05AA500367D2D /* NSDictionary+GLSafe.m in Sources */,
 				28FA9E992432083300001EF6 /* DetailViewController.m in Sources */,
+				287523012499EE4200EEB447 /* GLSafeTool.m in Sources */,
+				281F83F424A07D5600367D2D /* NSMutableString+GLSafe.m in Sources */,
+				281F83EE24A05ECF00367D2D /* NSMutableDictionary+GLSafe.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

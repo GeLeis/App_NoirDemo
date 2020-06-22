@@ -13,6 +13,7 @@
 #import "UIColor+Common.h"
 #import <FLEX.h>
 #import "GLRunloopTaskTool.h"
+#import "NSArray+GLSafe.h"
 
 @interface ViewController ()
 @property (nonatomic, copy) NSArray *dataLists;
