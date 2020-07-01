@@ -40,6 +40,10 @@ static GLRunloopTaskTool *_taskTool = nil;
 }
 //添加任务
 + (void)addTarget:(id)target uniqueKey:(NSString *)uniqueKey task:(void(^)(void))task {
+    if (![NSThread isMainThread]) {
+        //在子线程中添加的任务,最终执行的时候不是在原来的子线程,为了避免不必要的线程处理问题,请在mainThread中添加task
+        return;
+    }
     GLRunloopTaskTool *taskTool = [GLRunloopTaskTool shareInstance];
     //如果target存在task,查看是否需要检查uniqueKey
     id tar = target ? : taskTool;

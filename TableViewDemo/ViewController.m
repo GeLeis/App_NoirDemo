@@ -24,27 +24,18 @@ static NSPointerArray *testArr = nil;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [UIColor redColor];
-    [UIColor colorWithRed:1 green:1 blue:1 alpha:1];
     self.navigationItem.title = @"TableViewVC";
     //tableView注册重用cell
     [self.tableView registerClass:TableViewListCell.class forCellReuseIdentifier:NSStringFromClass(TableViewListCell.class)];
 //    [[FLEXManager sharedManager] showExplorer];
-//    self.timer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(timeTest) userInfo:nil repeats:YES];
-//    [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
+//    [self pointerArrayTest_didLoad];
+}
+
+- (void)dealloc {
     
-//    NSMutableDictionary *arr= [NSMutableDictionary dictionary];
-//    NSObject *obj = nil;
-//    NSString *key = nil;
-//    [arr removeObjectForKey:key];
-    
-//    NSMutableString *str = [NSMutableString string];
-//    NSString *key = nil;
-//    [str appendString:key];
-//    __weak typeof(self) weakself = self;
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//        NSLog(@"%@",weakself);
-//    });
+}
+
+- (void)pointerArrayTest_didLoad {
     testArr = [NSPointerArray pointerArrayWithOptions:NSPointerFunctionsWeakMemory];
     NSObject *obj1 = [NSObject new];
     [testArr addPointer:(__bridge void * _Nullable)(@1)];
@@ -63,32 +54,31 @@ static NSPointerArray *testArr = nil;
     NSLog(@"testarr = %@",[testArr allObjects]);
 }
 
-- (void)dealloc {
-    [testArr addPointer:NULL];
-    [testArr compact];
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//        NSLog(@"====================%d",testArr.count);
-//    });
-//    for (int i = 0; i < testArr.count; i++) {
-//        NSLog(@"ViewControllerDealloc=%p",[testArr pointerAtIndex:i]);
-//    }
-//    __weak id weakself = self;
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//    id obj = [testArr[1] nonretainedObjectValue];
-//    NSObject *obj22 = [NSObject new];
-//       NSLog(@"self = %@  ViewControllerDealloc===%@",self,obj);
-//    [obj performSelector:@selector(timeTest)];
-        NSLog(@"testarr = %@",[testArr allObjects]);
-        for (int i = 0; i < testArr.count; i++) {
-            if (i == 2) {
-                id obj = [testArr pointerAtIndex:i];
-                [obj performSelector:@selector(timeTest)];
+- (void)pointerArrayTest_dealloc {
+        [testArr addPointer:NULL];
+        [testArr compact];
+    //    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    //        NSLog(@"====================%d",testArr.count);
+    //    });
+    //    for (int i = 0; i < testArr.count; i++) {
+    //        NSLog(@"ViewControllerDealloc=%p",[testArr pointerAtIndex:i]);
+    //    }
+    //    __weak id weakself = self;
+    //    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    //    id obj = [testArr[1] nonretainedObjectValue];
+    //    NSObject *obj22 = [NSObject new];
+    //       NSLog(@"self = %@  ViewControllerDealloc===%@",self,obj);
+    //    [obj performSelector:@selector(timeTest)];
+            NSLog(@"testarr = %@",[testArr allObjects]);
+            for (int i = 0; i < testArr.count; i++) {
+                if (i == 2) {
+                    id obj = [testArr pointerAtIndex:i];
+                    [obj performSelector:@selector(timeTest)];
+                }
+                NSLog(@"ViewControllerDealloc=%p",[testArr pointerAtIndex:i]);
             }
-            NSLog(@"ViewControllerDealloc=%p",[testArr pointerAtIndex:i]);
-        }
-//    });
+    //    });
 }
-
 - (void)timeTest {
 //    for (int i = 0; i < 20000; i++) {
 //        NSLog(@"%d",i);
