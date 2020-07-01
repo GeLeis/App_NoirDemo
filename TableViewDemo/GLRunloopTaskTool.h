@@ -9,19 +9,17 @@
 #import <Foundation/Foundation.h>
 
 @interface GLRunloopTaskTool : NSObject
-+ (GLRunloopTaskTool *)shareInstance;
++ (void)addTask:(void(^)(void))task;
 
-- (void)addTask:(void(^)(void))task;
-
-- (void)addTarget:(id)target task:(void(^)(void))task;
++ (void)addTarget:(id)target task:(void(^)(void))task;
 
 /// 添加runloop任务
 /// @param target 执行任务的关联目标
 /// @param uniqueKey 任务的唯一key,防止对同一个对象添加相同的任务
 /// @param task 任务
-- (void)addTarget:(id)target uniqueKey:(NSString *)uniqueKey task:(void(^)(void))task;
++ (void)addTarget:(id)target uniqueKey:(NSString *)uniqueKey task:(void(^)(void))task;
 
-- (void)removeTasks:(id)target;
++ (void)removeTasks:(id)target;
 
-- (void)removeAllTasks;
++ (void)removeAllTasks;
 @end

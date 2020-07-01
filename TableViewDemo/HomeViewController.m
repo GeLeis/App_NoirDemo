@@ -14,6 +14,8 @@
 @interface HomeViewController ()
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, strong) NSTimer *timer;
+@property (nonatomic, copy) void(^clickHandle)(int index);
+@property (nonatomic, assign) BOOL taskAdded;
 @end
 
 @implementation HomeViewController
@@ -27,24 +29,28 @@
 //    return @"objectForKeyedSubscript";
 //}
 
+- (void)blockTest:(void(^)(void))block {
+    block();
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"Home VC";
-    
     [self safeArrTest];
     [self safeDictionTest];
-    
+    [self blockTest:^() {
+        NSLog(@"xxxBlock");
+    }];
     [self safeStringTst];
     
-    [GLRunloopTaskTool shareInstance];
     for (int i =0 ; i < 10; i++) {
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 10 + 100 * i, 100, 20)];
         label.text = [NSString stringWithFormat:@"label_%d",i];
         [self.scrollView addSubview:label];
     }
     self.scrollView.contentSize = CGSizeMake(0, 100 * 10 + 10);
-//    self.timer = [NSTimer scheduledTimerWithTimeInterval:4 repeats:YES block:^(NSTimer * _Nonnull timer) {
-//        [NSThread sleepForTimeInterval:2];
+//    self.timer = [NSTimer scheduledTimerWithTimeInterval:1 repeats:YES block:^(NSTimer * _Nonnull timer) {
+//        NSLog(@"==");
 //    }];
 //    [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
 }
@@ -113,6 +119,44 @@
 - (IBAction)enterAction:(id)sender {
     ViewController *vc = [[ViewController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    
+}
+
+- (void)taskToolTest {
+    //证明tasks执行过程中,同样可以执行主线程操作
+    if (!self.taskAdded) {
+        for (int i = 0; i < 20000; i++) {
+            [GLRunloopTaskTool addTarget:self task:^{
+                NSLog(@"excuteTask i=%d",i);
+            }];
+        }
+        self.taskAdded = YES;
+    } else {
+        NSLog(@"touchesBegantouchesBegantouchesBegantouchesBegan");
+    }
+}
+//判断是否为4的n次幂
+- (BOOL)is4multiple:(int)n {
+////      100  4
+////    11000 16
+//    if (n == 1) {
+//        return YES;
+//    }
+//    return n < 8 ? !(n^4) : [self is4multiple:n>>2];
+////    if (n < 8) {
+////        return !(n^4);
+////    }
+////    return [self is4multiple:n>>2];
+    /*
+     1.n>0
+     2.1只出现在奇数位
+     3.只有1个1
+     */
+    //4个字节
+    return (n&0xAAAAAAAA) == 0 && (n&(n-1)) == 0 && n > 0;
 }
 
 /*

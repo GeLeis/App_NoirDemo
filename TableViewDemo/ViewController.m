@@ -14,7 +14,7 @@
 #import <FLEX.h>
 #import "GLRunloopTaskTool.h"
 #import "NSArray+GLSafe.h"
-
+static NSPointerArray *testArr = nil;
 @interface ViewController ()
 @property (nonatomic, copy) NSArray *dataLists;
 @property (nonatomic, strong) NSTimer *timer;
@@ -29,10 +29,6 @@
     self.navigationItem.title = @"TableViewVC";
     //tableView注册重用cell
     [self.tableView registerClass:TableViewListCell.class forCellReuseIdentifier:NSStringFromClass(TableViewListCell.class)];
-//    [[GLRunloopTaskTool shareInstance].taskCache setObject:self forKey:@"task1"];
-//    [[GLRunloopTaskTool shareInstance].taskCache setObject:@"aaaa" forKey:@"task2"];
-//    [[GLRunloopTaskTool shareInstance].taskCache setObject:@"bbbb" forKey:@"task3"];
-//    [[GLRunloopTaskTool shareInstance].taskCache setObject:@"cccc" forKey:@"task4"];
 //    [[FLEXManager sharedManager] showExplorer];
 //    self.timer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(timeTest) userInfo:nil repeats:YES];
 //    [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
@@ -49,18 +45,56 @@
 //    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
 //        NSLog(@"%@",weakself);
 //    });
+    testArr = [NSPointerArray pointerArrayWithOptions:NSPointerFunctionsWeakMemory];
+    NSObject *obj1 = [NSObject new];
+    [testArr addPointer:(__bridge void * _Nullable)(@1)];
+    [testArr addPointer:(__bridge void * _Nullable)(obj1)];
+    [testArr addPointer:(__bridge void * _Nullable)(self)];
+    obj1 = nil;
+    NSLog(@"self%@ p=%p",self,self);
+    for (int i = 0; i < testArr.count; i++) {
+        if ([testArr pointerAtIndex:i] == (__bridge void * _Nullable)(self)) {
+            NSLog(@"equal=========");
+        }
+        NSLog(@"ViewController=%p",[testArr pointerAtIndex:i]);
+    }
+    [testArr addPointer:NULL];
+    [testArr compact];
+    NSLog(@"testarr = %@",[testArr allObjects]);
 }
 
 - (void)dealloc {
-//    [_taskTool.taskCache.keyEnumerator allObjects]
-//    NSLog(@"========%@",[GLRunloopTaskTool shareInstance].taskCache);
+    [testArr addPointer:NULL];
+    [testArr compact];
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        NSLog(@"====================%d",testArr.count);
+//    });
+//    for (int i = 0; i < testArr.count; i++) {
+//        NSLog(@"ViewControllerDealloc=%p",[testArr pointerAtIndex:i]);
+//    }
+//    __weak id weakself = self;
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//    id obj = [testArr[1] nonretainedObjectValue];
+//    NSObject *obj22 = [NSObject new];
+//       NSLog(@"self = %@  ViewControllerDealloc===%@",self,obj);
+//    [obj performSelector:@selector(timeTest)];
+        NSLog(@"testarr = %@",[testArr allObjects]);
+        for (int i = 0; i < testArr.count; i++) {
+            if (i == 2) {
+                id obj = [testArr pointerAtIndex:i];
+                [obj performSelector:@selector(timeTest)];
+            }
+            NSLog(@"ViewControllerDealloc=%p",[testArr pointerAtIndex:i]);
+        }
+//    });
 }
 
 - (void)timeTest {
 //    for (int i = 0; i < 20000; i++) {
 //        NSLog(@"%d",i);
 //    }
-    [NSThread sleepForTimeInterval:2];
+//    [NSThread sleepForTimeInterval:2];
+    NSLog(@"timeTest");
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

@@ -13,6 +13,7 @@
 @property (nonatomic, strong) NSMapTable *taskCache;
 /** 无target的自增长index */
 @property (nonatomic, assign) int increase_Index;
+@property (nonatomic, strong) NSMutableArray *targetsCache;
 @end
 
 @implementation GLRunloopTaskTool
@@ -30,38 +31,40 @@ static GLRunloopTaskTool *_taskTool = nil;
     return _taskTool;
 }
 
-- (void)addTask:(void(^)(void))task {
++ (void)addTask:(void(^)(void))task {
     [self addTarget:nil task:task];
 }
 
-- (void)addTarget:(id)target task:(void(^)(void))task {
++ (void)addTarget:(id)target task:(void(^)(void))task {
     [self addTarget:target uniqueKey:nil task:task];
 }
 //添加任务
-- (void)addTarget:(id)target uniqueKey:(NSString *)uniqueKey task:(void(^)(void))task {
++ (void)addTarget:(id)target uniqueKey:(NSString *)uniqueKey task:(void(^)(void))task {
+    GLRunloopTaskTool *taskTool = [GLRunloopTaskTool shareInstance];
     //如果target存在task,查看是否需要检查uniqueKey
-    id tar = target ? : self;
-    NSMutableDictionary *taskInfo = [self.taskCache objectForKey:tar];
+    id tar = target ? : taskTool;
+    NSMutableDictionary *taskInfo = [taskTool.taskCache objectForKey:tar];
     if (!taskInfo) {
         taskInfo = [NSMutableDictionary dictionary];
-        [self.taskCache setObject:taskInfo forKey:tar];
+        [taskTool.taskCache setObject:taskInfo forKey:tar];
     }
     if (uniqueKey) {
         [taskInfo setObject:task forKey:uniqueKey];
     } else {
-        NSString *key = [NSString stringWithFormat:@"gl_runloop_task_tool_value_%d",self.increase_Index % INT_MAX];
+        NSString *key = [NSString stringWithFormat:@"gl_runloop_task_tool_value_%d",taskTool.increase_Index % INT_MAX];
         [taskInfo setObject:task forKey:key];
     }
-    self.increase_Index++;
+    taskTool.increase_Index++;
 }
 
-- (void)removeTasks:(id)target {
-    id tar = target ? : self;
-    [self.taskCache removeObjectForKey:tar];
++ (void)removeTasks:(id)target {
+    GLRunloopTaskTool *taskTool = [GLRunloopTaskTool shareInstance];
+    id tar = target ? : taskTool;
+    [taskTool.taskCache removeObjectForKey:tar];
 }
 
-- (void)removeAllTasks {
-    [self.taskCache removeAllObjects];
++ (void)removeAllTasks {
+    [[GLRunloopTaskTool shareInstance].taskCache removeAllObjects];
 }
 
 - (void)addRunloopObserver {
@@ -92,28 +95,35 @@ static GLRunloopTaskTool *_taskTool = nil;
 static void Callback(CFRunLoopObserverRef observer, CFRunLoopActivity activity, void *info){
     GLRunloopTaskTool *taskTool = (__bridge GLRunloopTaskTool *)(info);
     if (taskTool.taskCache.count) {
-        NSLog(@"start task");
+//        NSLog(@"start task");
         id target = taskTool.taskCache.keyEnumerator.allObjects.firstObject;
-        NSLog(@"target = %@",target);
+//        NSLog(@"target = %@",target);
         NSMutableDictionary *taskInfo = [taskTool.taskCache objectForKey:target];
-        NSLog(@"taskInfo start = %@",taskInfo);
+//        NSLog(@"taskInfo start = %@",taskInfo);
         NSString *taskKey = taskInfo.allKeys.firstObject;
         void(^task)(void) = [taskInfo objectForKey:taskKey];
         if (task) {
             //执行任务
             task();
-            NSLog(@"excute task=%@",task);
+//            NSLog(@"excute task=%@",task);
         }
         [taskInfo removeObjectForKey:taskKey];
-        NSLog(@"taskInfo end = %@",taskInfo);
+//        NSLog(@"taskInfo end = %@",taskInfo);
         if (taskInfo.count == 0) {
             [taskTool.taskCache removeObjectForKey:target];
-            NSLog(@"taskInfo.count== %lu,taskCache.count=%lu",(unsigned long)taskInfo.count,(unsigned long)taskTool.taskCache.count);
+//            NSLog(@"taskInfo.count== %lu,taskCache.count=%lu",(unsigned long)taskInfo.count,(unsigned long)taskTool.taskCache.count);
         }
         if (taskTool.taskCache.count) {
             CFRunLoopWakeUp(CFRunLoopGetMain());
         }
     }
+}
+
+- (NSMutableArray *)targetsCache {
+    if (!_targetsCache) {
+        _targetsCache = [NSMutableArray array];
+    }
+    return _targetsCache;
 }
 
 @end
