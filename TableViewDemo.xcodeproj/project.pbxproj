@@ -20,7 +20,6 @@
 		287523012499EE4200EEB447 /* GLSafeTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 287523002499EE4200EEB447 /* GLSafeTool.m */; };
 		28E784482490DA8F003EE5F2 /* GLRunloopTaskTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 28E784472490DA8F003EE5F2 /* GLRunloopTaskTool.m */; };
 		28FA9E7D243203CE00001EF6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 28FA9E7C243203CE00001EF6 /* AppDelegate.m */; };
-		28FA9E80243203CE00001EF6 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 28FA9E7F243203CE00001EF6 /* SceneDelegate.m */; };
 		28FA9E83243203CE00001EF6 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28FA9E82243203CE00001EF6 /* ViewController.m */; };
 		28FA9E86243203CE00001EF6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28FA9E84243203CE00001EF6 /* Main.storyboard */; };
 		28FA9E88243203D300001EF6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28FA9E87243203D300001EF6 /* Assets.xcassets */; };
@@ -62,8 +61,6 @@
 		28FA9E78243203CE00001EF6 /* TableViewDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TableViewDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		28FA9E7B243203CE00001EF6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		28FA9E7C243203CE00001EF6 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		28FA9E7E243203CE00001EF6 /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
-		28FA9E7F243203CE00001EF6 /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
 		28FA9E81243203CE00001EF6 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		28FA9E82243203CE00001EF6 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		28FA9E85243203CE00001EF6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -142,8 +139,6 @@
 				287522F82499C53300EEB447 /* GLSafe */,
 				28FA9E7B243203CE00001EF6 /* AppDelegate.h */,
 				28FA9E7C243203CE00001EF6 /* AppDelegate.m */,
-				28FA9E7E243203CE00001EF6 /* SceneDelegate.h */,
-				28FA9E7F243203CE00001EF6 /* SceneDelegate.m */,
 				2804F9D8243703F7002CA576 /* HomeViewController.h */,
 				2804F9D9243703F8002CA576 /* HomeViewController.m */,
 				28FA9E81243203CE00001EF6 /* ViewController.h */,
@@ -310,7 +305,6 @@
 				28FA9E7D243203CE00001EF6 /* AppDelegate.m in Sources */,
 				28FA9E8E243203D300001EF6 /* main.m in Sources */,
 				284263F724642321003960AB /* UIColor+Common.m in Sources */,
-				28FA9E80243203CE00001EF6 /* SceneDelegate.m in Sources */,
 				2842641F246552ED003960AB /* UIImageView+Common.m in Sources */,
 				281F83E8249C9DD700367D2D /* NSMutableArray+GLSafe.m in Sources */,
 				2804F9DA243703F8002CA576 /* HomeViewController.m in Sources */,

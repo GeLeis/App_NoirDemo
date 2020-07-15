@@ -180,6 +180,37 @@
     
     self.testLayer.frame = CGRectMake(frame.origin.x, frame.origin.y + 50, frame.size.width, frame.size.height);
 //    self.enterBtn.layer.frame = CGRectMake(frame.origin.x, frame.origin.y + 50, frame.size.width, frame.size.height);
+    [self hometest];
+}
+
+
+
+//自定义x的n次幂
+double myPow(double x, int n){
+    if (x == 0 ) {
+        return 0;
+    }
+    if (n == 0) {
+        return 1;
+    }
+    //正数
+    bool positive = n > 0;
+    int fabn = fabs(n);
+    double val = 1;
+    //1 11 111,
+    double tmp[32] = {x};
+
+    //10进制转2进制,111111111
+    //             1010101001
+    int i = 0;
+    while (fabn > 0) {
+        if (fabn % 2 == 1) {
+            val = val * tmp[i];
+        }
+        fabn = fabn / 2;
+        tmp[++i] = tmp[i] * tmp[i];
+    }
+    return positive ? val : 1 / val;
 }
 
 //跳跃游戏

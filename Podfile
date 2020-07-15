@@ -6,4 +6,5 @@ pod 'YLT_BaseLib'
 pod 'YLT_Kit'
 pod 'FLEX', :configurations => ['Debug']
 pod 'MLeaksFinder'
+pod 'KSCrash'
 end

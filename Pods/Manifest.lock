@@ -21,6 +21,69 @@ PODS:
   - FMDB (2.7.5):
     - FMDB/standard (= 2.7.5)
   - FMDB/standard (2.7.5)
+  - KSCrash (1.15.21):
+    - KSCrash/Installations (= 1.15.21)
+  - KSCrash/Installations (1.15.21):
+    - KSCrash/Recording
+    - KSCrash/Reporting
+  - KSCrash/Recording (1.15.21):
+    - KSCrash/Recording/Tools (= 1.15.21)
+  - KSCrash/Recording/Tools (1.15.21)
+  - KSCrash/Reporting (1.15.21):
+    - KSCrash/Recording
+    - KSCrash/Reporting/Filters (= 1.15.21)
+    - KSCrash/Reporting/MessageUI (= 1.15.21)
+    - KSCrash/Reporting/Sinks (= 1.15.21)
+    - KSCrash/Reporting/Tools (= 1.15.21)
+  - KSCrash/Reporting/Filters (1.15.21):
+    - KSCrash/Recording
+    - KSCrash/Reporting/Filters/Alert (= 1.15.21)
+    - KSCrash/Reporting/Filters/AppleFmt (= 1.15.21)
+    - KSCrash/Reporting/Filters/Base (= 1.15.21)
+    - KSCrash/Reporting/Filters/Basic (= 1.15.21)
+    - KSCrash/Reporting/Filters/GZip (= 1.15.21)
+    - KSCrash/Reporting/Filters/JSON (= 1.15.21)
+    - KSCrash/Reporting/Filters/Sets (= 1.15.21)
+    - KSCrash/Reporting/Filters/Stringify (= 1.15.21)
+    - KSCrash/Reporting/Filters/Tools (= 1.15.21)
+  - KSCrash/Reporting/Filters/Alert (1.15.21):
+    - KSCrash/Recording
+    - KSCrash/Reporting/Filters/Base
+  - KSCrash/Reporting/Filters/AppleFmt (1.15.21):
+    - KSCrash/Recording
+    - KSCrash/Reporting/Filters/Base
+  - KSCrash/Reporting/Filters/Base (1.15.21):
+    - KSCrash/Recording
+  - KSCrash/Reporting/Filters/Basic (1.15.21):
+    - KSCrash/Recording
+    - KSCrash/Reporting/Filters/Base
+  - KSCrash/Reporting/Filters/GZip (1.15.21):
+    - KSCrash/Recording
+    - KSCrash/Reporting/Filters/Base
+  - KSCrash/Reporting/Filters/JSON (1.15.21):
+    - KSCrash/Recording
+    - KSCrash/Reporting/Filters/Base
+  - KSCrash/Reporting/Filters/Sets (1.15.21):
+    - KSCrash/Recording
+    - KSCrash/Reporting/Filters/AppleFmt
+    - KSCrash/Reporting/Filters/Base
+    - KSCrash/Reporting/Filters/Basic
+    - KSCrash/Reporting/Filters/GZip
+    - KSCrash/Reporting/Filters/JSON
+    - KSCrash/Reporting/Filters/Stringify
+  - KSCrash/Reporting/Filters/Stringify (1.15.21):
+    - KSCrash/Recording
+    - KSCrash/Reporting/Filters/Base
+  - KSCrash/Reporting/Filters/Tools (1.15.21):
+    - KSCrash/Recording
+  - KSCrash/Reporting/MessageUI (1.15.21):
+    - KSCrash/Recording
+  - KSCrash/Reporting/Sinks (1.15.21):
+    - KSCrash/Recording
+    - KSCrash/Reporting/Filters
+    - KSCrash/Reporting/Tools
+  - KSCrash/Reporting/Tools (1.15.21):
+    - KSCrash/Recording
   - Masonry (1.1.0)
   - MJExtension (3.2.1)
   - MJRefresh (3.3.1)
@@ -46,6 +109,7 @@ PODS:
 
 DEPENDENCIES:
   - FLEX
+  - KSCrash
   - MLeaksFinder
   - YLT_BaseLib
   - YLT_Kit
@@ -58,6 +122,7 @@ SPEC REPOS:
     - FBRetainCycleDetector
     - FLEX
     - FMDB
+    - KSCrash
     - Masonry
     - MJExtension
     - MJRefresh
@@ -74,6 +139,7 @@ SPEC CHECKSUMS:
   FBRetainCycleDetector: 46f8179bbb1c587deee3ea838a1a3ee02acf5015
   FLEX: 81096107977a09836eb440173010ceeef01105d6
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
+  KSCrash: 47bc2f48bb5537f112432cfbea9a359aaf7a6cc5
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MJExtension: 635f2c663dcb1bf76fa4b715b2570a5710aec545
   MJRefresh: eeda70fbf0ad277f3178cef1cd0c3532591d6237
@@ -83,6 +149,6 @@ SPEC CHECKSUMS:
   YLT_BaseLib: 80bc4b4c412bafd2bf74f5a8736b9df6ebcf09ac
   YLT_Kit: bcf6196fffc590e03493617f5db37e717c13070d
 
-PODFILE CHECKSUM: b6ee5ec6e4c807ffedfd3a98a49b8e8b5aa9cbf7
+PODFILE CHECKSUM: 0036e50f76b92a281772dc4e69f38ac3c92ce3d0
 
 COCOAPODS: 1.8.3

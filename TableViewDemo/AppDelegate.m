@@ -7,33 +7,58 @@
 //
 
 #import "AppDelegate.h"
+#import <KSCrash.h>
+#import <KSCrash/KSCrashInstallationEmail.h>
 
 @interface AppDelegate ()
-
+@property (nonatomic, strong) KSCrashInstallation *installation;
 @end
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    NSLog(@"%@",NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject);
+    [self installCrashHandler];
     return YES;
 }
 
-
-#pragma mark - UISceneSession lifecycle
-
-
-- (UISceneConfiguration *)application:(UIApplication *)application configurationForConnectingSceneSession:(UISceneSession *)connectingSceneSession options:(UISceneConnectionOptions *)options {
-    // Called when a new scene session is being created.
-    // Use this method to select a configuration to create the new scene with.
-    return [[UISceneConfiguration alloc] initWithName:@"Default Configuration" sessionRole:connectingSceneSession.role];
+static void crash_callback(const KSCrashReportWriter* writer) {
+    NSLog(@"***advanced_crash_callback");
+//    [[(AppDelegate *)[UIApplication sharedApplication].delegate installation] sendAllReportsWithCompletion:^(NSArray *filteredReports, BOOL completed, NSError *error) {
+//        if (error) {
+//            NSLog(@"error = %@",error.description);
+//        } else {
+//            NSLog(@"%@",filteredReports);
+//        }
+//    }];
 }
 
-
-- (void)application:(UIApplication *)application didDiscardSceneSessions:(NSSet<UISceneSession *> *)sceneSessions {
-    // Called when the user discards a scene session.
-    // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
-    // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
+- (void)installCrashHandler {
+    KSCrashInstallationEmail *installation = [KSCrashInstallationEmail sharedInstance];
+    installation.recipients = @[@"869313996@qq.com"];
+    installation.subject = @"Crash Report";
+    installation.message = @"This is a crash report";
+    installation.filenameFmt = @"crash-report-%d.txt.gz";
+    
+    // Uncomment to send Apple style reports instead of JSON.
+    [installation setReportStyle:KSCrashEmailReportStyleApple useDefaultFilenameFormat:YES];
+    [installation install];
+    
+    
+    KSCrash *handler = [KSCrash sharedInstance];
+    handler.deadlockWatchdogInterval = 8;
+    handler.userInfo = nil;
+    handler.onCrash = crash_callback;
+    handler.monitoring = KSCrashMonitorTypeProductionSafe;
+    //在崩溃期间,内存自省忽略的类
+//    handler.doNotIntrospectClasses = @[@"ViewController"];
+    [handler install];
+    
+    NSArray *ids  =[[KSCrash sharedInstance] reportIDs];
+    NSLog(@"reportIDs = %@",ids);
+    NSDictionary *report = [[KSCrash sharedInstance] reportWithID:ids.firstObject];
+    NSLog(@"report = %@",report);
 }
 
 
