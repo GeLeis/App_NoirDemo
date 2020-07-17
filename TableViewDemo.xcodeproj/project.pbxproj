@@ -463,6 +463,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = L98X49N4LF;
 				INFOPLIST_FILE = TableViewDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

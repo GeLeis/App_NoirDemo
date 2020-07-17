@@ -55,10 +55,10 @@ static void crash_callback(const KSCrashReportWriter* writer) {
 //    handler.doNotIntrospectClasses = @[@"ViewController"];
     [handler install];
     
-    NSArray *ids  =[[KSCrash sharedInstance] reportIDs];
-    NSLog(@"reportIDs = %@",ids);
-    NSDictionary *report = [[KSCrash sharedInstance] reportWithID:ids.firstObject];
-    NSLog(@"report = %@",report);
+//    NSArray *ids  =[[KSCrash sharedInstance] reportIDs];
+//    NSLog(@"reportIDs = %@",ids);
+//    NSDictionary *report = [[KSCrash sharedInstance] reportWithID:ids.firstObject];
+//    NSLog(@"report = %@",report);
 }
 
 

@@ -12,6 +12,16 @@
 #import "NSArray+GLSafe.h"
 #import <libkern/OSAtomic.h>
 #import "CALayer+GLSDImage.h"
+#import <ReplayKit/ReplayKit.h>
+#import <os/signpost.h>
+
+#define SP_BEGIN_LOG(subsystem, category, name) \
+os_log_t m_log_##name = os_log_create((#subsystem), (#category));\
+os_signpost_id_t m_spid_##name = os_signpost_id_generate(m_log_##name);\
+os_signpost_interval_begin(m_log_##name, m_spid_##name, (#name));
+
+#define SP_END_LOG(name) \
+os_signpost_interval_end(m_log_##name, m_spid_##name, (#name));
 
 @interface HomeViewController ()
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -22,6 +32,7 @@
 @property (nonatomic, strong) NSLock *lock;
 @property (weak, nonatomic) IBOutlet UIButton *enterBtn;
 @property (nonatomic, strong) CALayer *testLayer;
+@property (nonatomic, assign) BOOL recording;
 - (void)hometest;
 @end
 
@@ -41,6 +52,7 @@
 }
 
 - (void)viewDidLoad {
+    SP_BEGIN_LOG(custome, gl_log, init);
     [super viewDidLoad];
     self.navigationItem.title = @"Home VC";
 //    [self safeArrTest];
@@ -60,11 +72,12 @@
 //    }];
 //    [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
 //    [self atomicTest];
-    
+    SP_END_LOG(init);
     [self layerTest];
 }
 
 - (void)layerTest {
+    SP_BEGIN_LOG(custome, gl_log, layerTest);
     self.testLayer = [CALayer layer];
     //填充方式
     self.testLayer.contentsGravity = kCAGravityResizeAspectFill;
@@ -75,6 +88,14 @@
     [self.view.layer addSublayer:self.testLayer];
     [self.testLayer glsd_setImageWithURL:[NSURL URLWithString:@"http://img2.ultimavip.cn/97c69f92b8e5d3a3"] placeholderImage:[UIImage imageNamed:@"tubiaozhizuomoban--_10"]];
     [self.testLayer glsd_setImageWithURL:[NSURL URLWithString:@"http://img2.ultimavip.cn/97c69f92b8e5d3a3"] placeholderImage:[UIImage imageNamed:@"tubiaozhizuomoban--_10"]];
+    /*
+     统计这段区间的执行次数,耗时,等等,更加直观
+    SP_BEGIN_LOG(sysname, category, name);
+     sysname:自定义,可以用bundleId
+     category:在timeprofile中统计分类时使用,相同的扼categroy在同一个分类下
+     name:具体统计名称
+     */
+    SP_END_LOG(layerTest);
 }
 
 - (NSArray<UIKeyCommand *> *)keyCommands {
@@ -89,30 +110,45 @@
     [super traitCollectionDidChange:previousTraitCollection];
 }
 
-//- (void)viewWillAppear:(BOOL)animated {
-//    [super viewWillAppear:animated];
-//    [NSThread sleepForTimeInterval:2];
-//    NSLog(@"viewWillAppear");
-//}
-//
-//- (void)viewWillLayoutSubviews {
-//    [super viewWillLayoutSubviews];
-//    [NSThread sleepForTimeInterval:2];
-//    NSLog(@"viewWillLayoutSubviews");
-//}
-//
-//- (void)viewDidLayoutSubviews {
-//    [super viewDidLayoutSubviews];
-//    [NSThread sleepForTimeInterval:2];
-//   NSLog(@"viewDidLayoutSubviews");
-//}
-//
-//- (void)viewDidAppear:(BOOL)animated {
-//    [super viewDidAppear:animated];
-//    [NSThread sleepForTimeInterval:2];
-//    [self.view bringSubviewToFront:self.enterBtn];
-//    NSLog(@"viewDidAppear");
-//}
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [NSThread sleepForTimeInterval:2];
+    NSLog(@"viewWillAppear");
+}
+
+- (void)viewWillLayoutSubviews {
+    [super viewWillLayoutSubviews];
+    [NSThread sleepForTimeInterval:2];
+    NSLog(@"viewWillLayoutSubviews");
+}
+
+- (void)viewDidLayoutSubviews {
+    SP_BEGIN_LOG(custome, gl_log, viewDidLayoutSubviews);
+    [super viewDidLayoutSubviews];
+    [NSThread sleepForTimeInterval:2];
+   NSLog(@"viewDidLayoutSubviews");
+    SP_END_LOG(viewDidLayoutSubviews);
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    SP_BEGIN_LOG(custome, gl_log, viewDidAppear);
+    [super viewDidAppear:animated];
+    [NSThread sleepForTimeInterval:2];
+    [self.view bringSubviewToFront:self.enterBtn];
+    NSLog(@"viewDidAppear");
+    SP_END_LOG(viewDidAppear);
+    
+    
+    os_log_t m_log = os_log_create("custome", "gl_log");\
+    for(int i = 0; i < 10; i++) {
+        os_signpost_id_t signid_1 = os_signpost_id_generate(m_log);
+        os_signpost_interval_begin(m_log, signid_1, "asynctest");
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            NSLog(@"打印的第%d遍",i);
+            os_signpost_interval_end(m_log, signid_1, "asynctest", "index%d",i);
+        });
+    }
+}
 
 - (void)atomicTest {
     self.lock = [[NSLock alloc] init];
@@ -204,8 +240,29 @@
     
     self.testLayer.frame = CGRectMake(frame.origin.x, frame.origin.y + 50, frame.size.width, frame.size.height);
 //    self.enterBtn.layer.frame = CGRectMake(frame.origin.x, frame.origin.y + 50, frame.size.width, frame.size.height);
-    int a[] = {3,3,5,0,0,3,1,4};
-    maxProfit(a, 8);
+    [self replaykitTest];
+    SP_BEGIN_LOG(fourpage, init, layerTest);
+    SP_END_LOG(layerTest);
+}
+
+- (void)replaykitTest {
+    if (self.recording) {
+        self.recording = YES;
+        [[RPScreenRecorder sharedRecorder] startCaptureWithHandler:^(CMSampleBufferRef  _Nonnull sampleBuffer, RPSampleBufferType bufferType, NSError * _Nullable error) {
+            NSLog(@"xxx");
+        } completionHandler:^(NSError * _Nullable error) {
+            if (error) {
+                NSLog(@"error = %@",error);
+            }
+        }];
+    } else {
+        [[RPScreenRecorder sharedRecorder] stopCaptureWithHandler:^(NSError * _Nullable error) {
+            if (error) {
+                NSLog(@"error = %@",error);
+            }
+        }];
+        self.recording = NO;
+    }
 }
 
 int maxProfit(int* prices, int pricesSize){
