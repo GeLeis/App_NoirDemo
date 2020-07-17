@@ -11,6 +11,7 @@
 #import "GLRunloopTaskTool.h"
 #import "NSArray+GLSafe.h"
 #import <libkern/OSAtomic.h>
+#import "CALayer+GLSDImage.h"
 
 @interface HomeViewController ()
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -42,27 +43,50 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"Home VC";
-    [self safeArrTest];
-    [self safeDictionTest];
-    [self blockTest:^() {
-        NSLog(@"xxxBlock");
-    }];
-    [self safeStringTst];
-    for (int i =0 ; i < 10; i++) {
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 10 + 100 * i, 100, 20)];
-        label.text = [NSString stringWithFormat:@"label_%d",i];
-        [self.scrollView addSubview:label];
-    }
+//    [self safeArrTest];
+//    [self safeDictionTest];
+//    [self blockTest:^() {
+//        NSLog(@"xxxBlock");
+//    }];
+//    [self safeStringTst];
+//    for (int i =0 ; i < 10; i++) {
+//        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 10 + 100 * i, 100, 20)];
+//        label.text = [NSString stringWithFormat:@"label_%d",i];
+//        [self.scrollView addSubview:label];
+//    }
     self.scrollView.contentSize = CGSizeMake(0, 100 * 10 + 10);
 //    self.timer = [NSTimer scheduledTimerWithTimeInterval:1 repeats:YES block:^(NSTimer * _Nonnull timer) {
 //        NSLog(@"==");
 //    }];
 //    [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
-    [self atomicTest];
+//    [self atomicTest];
+    
+    [self layerTest];
+}
+
+- (void)layerTest {
     self.testLayer = [CALayer layer];
+    //填充方式
+    self.testLayer.contentsGravity = kCAGravityResizeAspectFill;
+    //当前屏幕的缩放比例
+    self.testLayer.contentsScale = [UIScreen mainScreen].scale;
     self.testLayer.backgroundColor = [UIColor redColor].CGColor;
     self.testLayer.frame = CGRectMake(50, 100, 50, 50);
     [self.view.layer addSublayer:self.testLayer];
+    [self.testLayer glsd_setImageWithURL:[NSURL URLWithString:@"http://img2.ultimavip.cn/97c69f92b8e5d3a3"] placeholderImage:[UIImage imageNamed:@"tubiaozhizuomoban--_10"]];
+    [self.testLayer glsd_setImageWithURL:[NSURL URLWithString:@"http://img2.ultimavip.cn/97c69f92b8e5d3a3"] placeholderImage:[UIImage imageNamed:@"tubiaozhizuomoban--_10"]];
+}
+
+- (NSArray<UIKeyCommand *> *)keyCommands {
+    return @[[UIKeyCommand commandWithTitle:@"测试" image:nil action:@selector(keyTest) input:@" " modifierFlags:UIKeyModifierCommand propertyList:nil]];
+}
+
+- (void)keyTest {
+    NSLog(@"keyTEst");
+}
+
+- (void)traitCollectionDidChange:(UITraitCollection *)previousTraitCollection {
+    [super traitCollectionDidChange:previousTraitCollection];
 }
 
 //- (void)viewWillAppear:(BOOL)animated {
@@ -180,9 +204,44 @@
     
     self.testLayer.frame = CGRectMake(frame.origin.x, frame.origin.y + 50, frame.size.width, frame.size.height);
 //    self.enterBtn.layer.frame = CGRectMake(frame.origin.x, frame.origin.y + 50, frame.size.width, frame.size.height);
-    [self hometest];
+    int a[] = {3,3,5,0,0,3,1,4};
+    maxProfit(a, 8);
 }
 
+int maxProfit(int* prices, int pricesSize){
+    if (pricesSize <= 1) {
+        return 0;
+    }
+    int val = 0;
+    int lastval = 0;
+    int lowp = prices[0];
+    int highp = prices[0];
+    for (int i = 1; i < pricesSize; i++) {
+        if (lowp == highp) {
+            if (prices[i] <= lowp) {
+                lowp = prices[i];
+                highp = lowp;
+            } else {
+                highp = prices[i];
+                if (i < pricesSize - 1) {
+                    continue;
+                }
+            }
+        } else if(prices[i] > highp) {
+            highp = prices[i];
+            if (i < pricesSize - 1) {
+                continue;
+            }
+        }
+        if (highp - lowp >  val / 2) {
+            val = fmax(lastval,val - lastval) + highp - lowp;
+            lastval = highp - lowp;
+            lowp = prices[i];
+            highp = lowp;
+        }
+    }
+    return val;
+}
 
 
 //自定义x的n次幂
