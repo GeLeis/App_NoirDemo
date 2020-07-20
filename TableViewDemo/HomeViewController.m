@@ -56,7 +56,7 @@ os_signpost_interval_end(m_log_##name, m_spid_##name, (#name));
 }
 
 - (void)checkPick2 {
-    
+    NSLog(@"checkPick2");
 }
 
 - (void)viewDidLoad {
