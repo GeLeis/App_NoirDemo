@@ -51,10 +51,13 @@ os_signpost_interval_end(m_log_##name, m_spid_##name, (#name));
     block();
 }
 
+//Acommit
+
 - (void)checkPick1 {
     
 }
 
+//Bcommit,git cherry-pick xxx,将其他分支某个commit相对于上一次commit的变动拉取到当前分支
 - (void)checkPick2 {
     NSLog(@"checkPick2");
 }
