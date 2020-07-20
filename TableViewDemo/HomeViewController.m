@@ -112,20 +112,20 @@ os_signpost_interval_end(m_log_##name, m_spid_##name, (#name));
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [NSThread sleepForTimeInterval:2];
+//    [NSThread sleepForTimeInterval:2];
     NSLog(@"viewWillAppear");
 }
 
 - (void)viewWillLayoutSubviews {
     [super viewWillLayoutSubviews];
-    [NSThread sleepForTimeInterval:2];
+//    [NSThread sleepForTimeInterval:2];
     NSLog(@"viewWillLayoutSubviews");
 }
 
 - (void)viewDidLayoutSubviews {
     SP_BEGIN_LOG(custome, gl_log, viewDidLayoutSubviews);
     [super viewDidLayoutSubviews];
-    [NSThread sleepForTimeInterval:2];
+//    [NSThread sleepForTimeInterval:2];
    NSLog(@"viewDidLayoutSubviews");
     SP_END_LOG(viewDidLayoutSubviews);
 }
@@ -133,7 +133,7 @@ os_signpost_interval_end(m_log_##name, m_spid_##name, (#name));
 - (void)viewDidAppear:(BOOL)animated {
     SP_BEGIN_LOG(custome, gl_log, viewDidAppear);
     [super viewDidAppear:animated];
-    [NSThread sleepForTimeInterval:2];
+//    [NSThread sleepForTimeInterval:2];
     [self.view bringSubviewToFront:self.enterBtn];
     NSLog(@"viewDidAppear");
     SP_END_LOG(viewDidAppear);

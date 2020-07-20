@@ -5,6 +5,6 @@ target 'TableViewDemo' do
 pod 'YLT_BaseLib'
 pod 'YLT_Kit'
 pod 'FLEX', :configurations => ['Debug']
-pod 'MLeaksFinder'
+#pod 'MLeaksFinder'
 pod 'KSCrash'
 end

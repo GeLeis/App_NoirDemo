@@ -78,7 +78,8 @@
 - (UILabel *)titleLbl {
     if (!_titleLbl) {
         _titleLbl = [[UILabel alloc] init];
-        _titleLbl.font = [UIFont systemFontOfSize:16];
+        _titleLbl.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+        _titleLbl.adjustsFontSizeToFitWidth = YES;
     }
     return _titleLbl;
 }
