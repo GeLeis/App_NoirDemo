@@ -51,6 +51,10 @@ os_signpost_interval_end(m_log_##name, m_spid_##name, (#name));
     block();
 }
 
+- (void)checkPick1 {
+    
+}
+
 - (void)viewDidLoad {
     SP_BEGIN_LOG(custome, gl_log, init);
     [super viewDidLoad];
