@@ -14,6 +14,7 @@
 #import "CALayer+GLSDImage.h"
 #import <ReplayKit/ReplayKit.h>
 #import <os/signpost.h>
+#import <FMDB.h>
 
 #define SP_BEGIN_LOG(subsystem, category, name) \
 os_log_t m_log_##name = os_log_create((#subsystem), (#category));\
@@ -63,8 +64,8 @@ os_signpost_interval_end(m_log_##name, m_spid_##name, (#name));
 }
 
 - (void)viewDidLoad {
-    SP_BEGIN_LOG(custome, gl_log, init);
     [super viewDidLoad];
+    SP_BEGIN_LOG(custome, gl_log, init);
     self.navigationItem.title = @"Home VC";
 //    [self safeArrTest];
 //    [self safeDictionTest];
@@ -86,6 +87,7 @@ os_signpost_interval_end(m_log_##name, m_spid_##name, (#name));
     SP_END_LOG(init);
     [self layerTest];
 }
+
 
 - (void)layerTest {
     SP_BEGIN_LOG(custome, gl_log, layerTest);
@@ -252,8 +254,41 @@ os_signpost_interval_end(m_log_##name, m_spid_##name, (#name));
     self.testLayer.frame = CGRectMake(frame.origin.x, frame.origin.y + 50, frame.size.width, frame.size.height);
 //    self.enterBtn.layer.frame = CGRectMake(frame.origin.x, frame.origin.y + 50, frame.size.width, frame.size.height);
     [self replaykitTest];
-    SP_BEGIN_LOG(fourpage, init, layerTest);
-    SP_END_LOG(layerTest);
+    
+    [self fmdbTimeTest];
+}
+
+- (void)fmdbTimeTest {
+    //每次databasequeue的建立会占用2ms左右,iphonexs 11.3.2
+    //database的开启关闭会占用1.5ms
+    /*
+     建议:
+     1.采用单独的子线程在app期间保存数据库的连接
+     2.多个insert,update,delete操作,采用事物合并成一次提交
+     */
+    SP_BEGIN_LOG(custome, gl_log, FMDatabaseQueue);
+    NSString *docupath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *dbpath = [docupath stringByAppendingPathComponent:@"gelei.db"];
+    FMDatabaseQueue *dbqueue = [FMDatabaseQueue databaseQueueWithPath:dbpath];
+    [dbqueue inDatabase:^(FMDatabase * _Nonnull db) {
+        if (!db.isOpen) {
+            NSLog(@"FMDatabaseQueue error");
+        } else {
+            NSLog(@"FMDatabaseQueue excute");
+        }
+    }];
+    SP_END_LOG(FMDatabaseQueue);
+    
+    SP_BEGIN_LOG(custome, gl_log, FMDatabase);
+    FMDatabase *dbbase = [FMDatabase databaseWithPath:[docupath stringByAppendingPathComponent:@"gelei2.db"]];
+    if (![dbbase open]) {
+        NSLog(@"FMDatabase error ");
+    } else {
+        NSLog(@"FMDatabase excute ");
+        [dbbase close];
+    }
+    SP_END_LOG(FMDatabase);
+    
 }
 
 - (void)replaykitTest {
