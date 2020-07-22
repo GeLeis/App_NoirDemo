@@ -9,7 +9,9 @@
 #import "AppDelegate.h"
 #import <KSCrash.h>
 #import <KSCrash/KSCrashInstallationEmail.h>
-
+#import "GLCommonHeader.h"
+#import <DoraemonKit/DoraemonKit.h>
+#import "GLFileLogger.h"
 @interface AppDelegate ()
 @property (nonatomic, strong) KSCrashInstallation *installation;
 @end
@@ -18,9 +20,48 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+//    [self installCrashHandler];
     NSLog(@"%@",NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject);
-    [self installCrashHandler];
+    [self configCocoaLumberjack];
+    DDLogVerbose(@"22222");
+    [self configDoraemonKit];
     return YES;
+}
+
+
+- (void)configCocoaLumberjack {
+//    NSString *fileloggerPath = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES).firstObject;
+//    fileloggerPath = [fileloggerPath stringByAppendingPathComponent:@"lumberlogs"];
+//
+//    DDLogFileManagerDefault *filemanager = [[DDLogFileManagerDefault alloc] initWithLogsDirectory:fileloggerPath defaultFileProtectionLevel:NSFileProtectionNone];
+    
+    //采用默认的filemanager
+//    DDFileLogger *filelogger = [[DDFileLogger alloc] init];
+//    DDFileLogger *filelogger = [[DDFileLogger alloc] initWithLogFileManager:filemanager];
+    //自定义文件存储
+    GLFileLogger *filelogger = [GLFileLogger glLogger];
+    //单个日志文件,存在的最大时间,单位s,默认值60* 60 * 24
+    filelogger.rollingFrequency = 60* 60 * 24;
+    //单个日志文件的大小最大值,单位byte,默认值1024 * 1024
+    filelogger.maximumFileSize = 1024 * 1024;
+    //磁盘上日志文件的数量最大值
+    filelogger.logFileManager.maximumNumberOfLogFiles = 7;
+    [DDLog addLogger:filelogger];
+    
+    //控制台,xcode,
+//    [DDLog addLogger:[DDTTYLogger sharedInstance]];
+    //oslog,代替asloger
+    [DDLog addLogger:[DDOSLogger sharedInstance]];
+    
+    DDLogVerbose(@"Verbose");
+    DDLogDebug(@"Debug");
+    DDLogInfo(@"Info");
+    DDLogWarn(@"Warn");
+    DDLogError(@"Error");
+}
+
+- (void)configDoraemonKit{
+    [[DoraemonManager shareInstance] install];
 }
 
 static void crash_callback(const KSCrashReportWriter* writer) {

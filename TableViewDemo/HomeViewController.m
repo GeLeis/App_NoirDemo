@@ -15,6 +15,8 @@
 #import <ReplayKit/ReplayKit.h>
 #import <os/signpost.h>
 #import <FMDB.h>
+#import "GLCommonHeader.h"
+
 
 #define SP_BEGIN_LOG(subsystem, category, name) \
 os_log_t m_log_##name = os_log_create((#subsystem), (#category));\
@@ -150,17 +152,17 @@ os_signpost_interval_end(m_log_##name, m_spid_##name, (#name));
     [self.view bringSubviewToFront:self.enterBtn];
     NSLog(@"viewDidAppear");
     SP_END_LOG(viewDidAppear);
-    
-    
-    os_log_t m_log = os_log_create("custome", "gl_log");\
-    for(int i = 0; i < 10; i++) {
-        os_signpost_id_t signid_1 = os_signpost_id_generate(m_log);
-        os_signpost_interval_begin(m_log, signid_1, "asynctest");
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            NSLog(@"打印的第%d遍",i);
-            os_signpost_interval_end(m_log, signid_1, "asynctest", "index%d",i);
-        });
-    }
+//
+//
+//    os_log_t m_log = os_log_create("custome", "gl_log");\
+//    for(int i = 0; i < 10; i++) {
+//        os_signpost_id_t signid_1 = os_signpost_id_generate(m_log);
+//        os_signpost_interval_begin(m_log, signid_1, "asynctest");
+//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//            NSLog(@"打印的第%d遍",i);
+//            os_signpost_interval_end(m_log, signid_1, "asynctest", "index%d",i);
+//        });
+//    }
 }
 
 - (void)atomicTest {
@@ -252,10 +254,12 @@ os_signpost_interval_end(m_log_##name, m_spid_##name, (#name));
     CGRect frame = self.testLayer.frame;
     
     self.testLayer.frame = CGRectMake(frame.origin.x, frame.origin.y + 50, frame.size.width, frame.size.height);
-//    self.enterBtn.layer.frame = CGRectMake(frame.origin.x, frame.origin.y + 50, frame.size.width, frame.size.height);
-    [self replaykitTest];
+    DDLogVerbose(@"testddlog");
     
-    [self fmdbTimeTest];
+//    self.enterBtn.layer.frame = CGRectMake(frame.origin.x, frame.origin.y + 50, frame.size.width, frame.size.height);
+//    [self replaykitTest];
+    
+//    [self fmdbTimeTest];
 }
 
 - (void)fmdbTimeTest {

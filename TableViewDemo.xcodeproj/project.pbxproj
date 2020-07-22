@@ -18,6 +18,7 @@
 		287522FB2499C59E00EEB447 /* NSNull+GLSafe.m in Sources */ = {isa = PBXBuildFile; fileRef = 287522FA2499C59E00EEB447 /* NSNull+GLSafe.m */; };
 		287522FE2499C64100EEB447 /* NSArray+GLSafe.m in Sources */ = {isa = PBXBuildFile; fileRef = 287522FD2499C64100EEB447 /* NSArray+GLSafe.m */; };
 		287523012499EE4200EEB447 /* GLSafeTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 287523002499EE4200EEB447 /* GLSafeTool.m */; };
+		2876CE0C24C8123600F5647A /* GLFileLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 2876CE0B24C8123600F5647A /* GLFileLogger.m */; };
 		28C1901024C0593100AA3DE5 /* CALayer+GLSDImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C1900F24C0593100AA3DE5 /* CALayer+GLSDImage.m */; };
 		28E784482490DA8F003EE5F2 /* GLRunloopTaskTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 28E784472490DA8F003EE5F2 /* GLRunloopTaskTool.m */; };
 		28FA9E7D243203CE00001EF6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 28FA9E7C243203CE00001EF6 /* AppDelegate.m */; };
@@ -57,6 +58,9 @@
 		287522FD2499C64100EEB447 /* NSArray+GLSafe.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+GLSafe.m"; sourceTree = "<group>"; };
 		287522FF2499EE4200EEB447 /* GLSafeTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLSafeTool.h; sourceTree = "<group>"; };
 		287523002499EE4200EEB447 /* GLSafeTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GLSafeTool.m; sourceTree = "<group>"; };
+		2876CE0824C6FA7500F5647A /* GLCommonHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLCommonHeader.h; sourceTree = "<group>"; };
+		2876CE0A24C8123600F5647A /* GLFileLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLFileLogger.h; sourceTree = "<group>"; };
+		2876CE0B24C8123600F5647A /* GLFileLogger.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GLFileLogger.m; sourceTree = "<group>"; };
 		28C1900E24C0593100AA3DE5 /* CALayer+GLSDImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CALayer+GLSDImage.h"; sourceTree = "<group>"; };
 		28C1900F24C0593100AA3DE5 /* CALayer+GLSDImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CALayer+GLSDImage.m"; sourceTree = "<group>"; };
 		28E784462490DA8F003EE5F2 /* GLRunloopTaskTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLRunloopTaskTool.h; sourceTree = "<group>"; };
@@ -118,6 +122,15 @@
 			path = GLSafe;
 			sourceTree = "<group>";
 		};
+		2876CE0924C8120D00F5647A /* GLFileLogger */ = {
+			isa = PBXGroup;
+			children = (
+				2876CE0A24C8123600F5647A /* GLFileLogger.h */,
+				2876CE0B24C8123600F5647A /* GLFileLogger.m */,
+			);
+			path = GLFileLogger;
+			sourceTree = "<group>";
+		};
 		28FA9E6F243203CE00001EF6 = {
 			isa = PBXGroup;
 			children = (
@@ -139,7 +152,9 @@
 		28FA9E7A243203CE00001EF6 /* TableViewDemo */ = {
 			isa = PBXGroup;
 			children = (
+				2876CE0924C8120D00F5647A /* GLFileLogger */,
 				287522F82499C53300EEB447 /* GLSafe */,
+				2876CE0824C6FA7500F5647A /* GLCommonHeader.h */,
 				28FA9E7B243203CE00001EF6 /* AppDelegate.h */,
 				28FA9E7C243203CE00001EF6 /* AppDelegate.m */,
 				2804F9D8243703F7002CA576 /* HomeViewController.h */,
@@ -200,6 +215,7 @@
 				28FA9E75243203CE00001EF6 /* Frameworks */,
 				28FA9E76243203CE00001EF6 /* Resources */,
 				65F64F28CFA5EE4269A464E9 /* [CP] Copy Pods Resources */,
+				69C8A806C511380523B52190 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -273,6 +289,23 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TableViewDemo/Pods-TableViewDemo-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		69C8A806C511380523B52190 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TableViewDemo/Pods-TableViewDemo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TableViewDemo/Pods-TableViewDemo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TableViewDemo/Pods-TableViewDemo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		F7B51F4212CF2B7DC0AD046D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -313,6 +346,7 @@
 				284263F724642321003960AB /* UIColor+Common.m in Sources */,
 				2842641F246552ED003960AB /* UIImageView+Common.m in Sources */,
 				281F83E8249C9DD700367D2D /* NSMutableArray+GLSafe.m in Sources */,
+				2876CE0C24C8123600F5647A /* GLFileLogger.m in Sources */,
 				2804F9DA243703F8002CA576 /* HomeViewController.m in Sources */,
 				287522FE2499C64100EEB447 /* NSArray+GLSafe.m in Sources */,
 				28FA9E9F24321BD000001EF6 /* DataManager.m in Sources */,
@@ -470,7 +504,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.glei.TableViewDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.glei.tabledemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -488,7 +522,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.glei.TableViewDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.glei.tabledemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

@@ -7,4 +7,8 @@ pod 'YLT_Kit'
 pod 'FLEX', :configurations => ['Debug']
 #pod 'MLeaksFinder'
 pod 'KSCrash'
+pod 'DoraemonKit/Core', :configurations => ['Debug']
+pod 'DoraemonKit/WithGPS', :configurations => ['Debug']
+pod 'DoraemonKit/WithLoad', :configurations => ['Debug']
+pod 'DoraemonKit/WithLogger', :configurations => ['Debug']
 end
