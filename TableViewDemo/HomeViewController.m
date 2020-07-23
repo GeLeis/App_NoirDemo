@@ -255,7 +255,11 @@ os_signpost_interval_end(m_log_##name, m_spid_##name, (#name));
     
     self.testLayer.frame = CGRectMake(frame.origin.x, frame.origin.y + 50, frame.size.width, frame.size.height);
     DDLogVerbose(@"testddlog");
-    
+    DDLogError(@"error");
+    DDLogWarn(@"warning");
+    DDLogInfo(@"info");
+    DDLogDebug(@"debug");
+//    Error, warning, info, debug and verbose logs
 //    self.enterBtn.layer.frame = CGRectMake(frame.origin.x, frame.origin.y + 50, frame.size.width, frame.size.height);
 //    [self replaykitTest];
     

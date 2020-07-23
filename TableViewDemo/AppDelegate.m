@@ -23,7 +23,6 @@
 //    [self installCrashHandler];
     NSLog(@"%@",NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject);
     [self configCocoaLumberjack];
-    DDLogVerbose(@"22222");
     [self configDoraemonKit];
     return YES;
 }
@@ -52,12 +51,6 @@
 //    [DDLog addLogger:[DDTTYLogger sharedInstance]];
     //oslog,代替asloger
     [DDLog addLogger:[DDOSLogger sharedInstance]];
-    
-    DDLogVerbose(@"Verbose");
-    DDLogDebug(@"Debug");
-    DDLogInfo(@"Info");
-    DDLogWarn(@"Warn");
-    DDLogError(@"Error");
 }
 
 - (void)configDoraemonKit{
