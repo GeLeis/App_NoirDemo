@@ -1,0 +1,6 @@
+framework module YLT_BaseLib {
+  umbrella header "YLT_BaseLib-umbrella.h"
+
+  export *
+  module * { export * }
+}

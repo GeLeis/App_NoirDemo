@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "FD07EC49298502B8F38E5A3FFC08F2D0"
-               BuildableName = "libKSCrash.a"
+               BuildableName = "KSCrash.framework"
                BlueprintName = "KSCrash"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>

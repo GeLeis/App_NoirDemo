@@ -7,9 +7,9 @@
 //
 
 #import "AppDelegate.h"
-#import <KSCrash.h>
+#import <KSCrash/KSCrash.h>
 #import <KSCrash/KSCrashInstallationEmail.h>
-#import "GLCommonHeader.h"
+#import <CocoaLumberjack/CocoaLumberjack.h>
 #import <DoraemonKit/DoraemonKit.h>
 #import "GLFileLogger.h"
 @interface AppDelegate ()

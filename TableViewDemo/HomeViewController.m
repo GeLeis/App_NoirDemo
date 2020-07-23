@@ -16,6 +16,7 @@
 #import <os/signpost.h>
 #import <FMDB.h>
 #import "GLCommonHeader.h"
+#import "GLSocketManager.h"
 
 
 #define SP_BEGIN_LOG(subsystem, category, name) \
@@ -88,8 +89,13 @@ os_signpost_interval_end(m_log_##name, m_spid_##name, (#name));
 //    [self atomicTest];
     SP_END_LOG(init);
     [self layerTest];
+    
+    [self configClientSocket];
 }
 
+- (void)configClientSocket {
+    [[GLSocketManager defaultManager] connect];
+}
 
 - (void)layerTest {
     SP_BEGIN_LOG(custome, gl_log, layerTest);
@@ -252,18 +258,22 @@ os_signpost_interval_end(m_log_##name, m_spid_##name, (#name));
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     CGRect frame = self.testLayer.frame;
-    
     self.testLayer.frame = CGRectMake(frame.origin.x, frame.origin.y + 50, frame.size.width, frame.size.height);
-    DDLogVerbose(@"testddlog");
-    DDLogError(@"error");
-    DDLogWarn(@"warning");
-    DDLogInfo(@"info");
-    DDLogDebug(@"debug");
-//    Error, warning, info, debug and verbose logs
-//    self.enterBtn.layer.frame = CGRectMake(frame.origin.x, frame.origin.y + 50, frame.size.width, frame.size.height);
-//    [self replaykitTest];
     
+//    DDLogVerbose(@"testddlog");
+//    DDLogError(@"error");
+//    DDLogWarn(@"warning");
+//    DDLogInfo(@"info");
+//    DDLogDebug(@"debug");
+    
+//    self.enterBtn.layer.frame = CGRectMake(frame.origin.x, frame.origin.y + 50, frame.size.width, frame.size.height);
+    
+    
+//    [self replaykitTest];
+
 //    [self fmdbTimeTest];
+    
+    [[GLSocketManager defaultManager] sendMessage:@"socket test"];
 }
 
 - (void)fmdbTimeTest {
@@ -675,14 +685,5 @@ int numDecodings(char * s) {
     return (n&0xAAAAAAAA) == 0 && (n&(n-1)) == 0 && n > 0;
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

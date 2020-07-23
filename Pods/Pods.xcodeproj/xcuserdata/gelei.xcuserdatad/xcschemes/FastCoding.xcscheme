@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "8CB1610D02CF2E1138DAFFDA5722B39A"
-               BuildableName = "libFastCoding.a"
+               BuildableName = "FastCoding.framework"
                BlueprintName = "FastCoding"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>

@@ -12,7 +12,7 @@
 
 
 //定义ddlogLevel登记
-static const DDLogLevel ddLogLevel = DDLogLevelError;
+static const DDLogLevel ddLogLevel = DDLogLevelVerbose;
 #endif /* GLCommonHeader_h */
 /*
  不同logLevel打印的DDLog信息:

@@ -6,7 +6,7 @@
 //  Copyright © 2020 gelei. All rights reserved.
 //
 
-#import "DDFileLogger.h"
+#import <CocoaLumberjack/DDFileLogger.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

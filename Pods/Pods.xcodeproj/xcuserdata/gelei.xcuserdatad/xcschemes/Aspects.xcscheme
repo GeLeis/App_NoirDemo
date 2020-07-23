@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C6539905C4D50932B36244650B93C79B"
-               BuildableName = "libAspects.a"
+               BuildableName = "Aspects.framework"
                BlueprintName = "Aspects"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>

@@ -15,6 +15,7 @@ PODS:
   - AFNetworking/UIKit (4.0.0):
     - AFNetworking/NSURLSession
   - Aspects (1.4.1)
+  - CocoaAsyncSocket (7.6.4)
   - CocoaLumberjack (3.6.1):
     - CocoaLumberjack/Core (= 3.6.1)
   - CocoaLumberjack/Core (3.6.1)
@@ -116,6 +117,7 @@ PODS:
     - YLT_BaseLib
 
 DEPENDENCIES:
+  - CocoaAsyncSocket
   - DoraemonKit/Core
   - DoraemonKit/WithGPS
   - DoraemonKit/WithLoad
@@ -129,6 +131,7 @@ SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - AFNetworking
     - Aspects
+    - CocoaAsyncSocket
     - CocoaLumberjack
     - DoraemonKit
     - FastCoding
@@ -146,6 +149,7 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   AFNetworking: d9fdf484a3c723ec3c558a41cc5754c7e845ee77
   Aspects: 7595ba96a6727a58ebcbfc954497fc5d2fdde546
+  CocoaAsyncSocket: 694058e7c0ed05a9e217d1b3c7ded962f4180845
   CocoaLumberjack: b17ae15142558d08bbacf69775fa10c4abbebcc9
   DoraemonKit: 4ad75a74374d836425e947f0f891157cacfdcf46
   FastCoding: 3b590f7143a229780fa744b35084d85d9461587e
@@ -160,6 +164,6 @@ SPEC CHECKSUMS:
   YLT_BaseLib: 80bc4b4c412bafd2bf74f5a8736b9df6ebcf09ac
   YLT_Kit: bcf6196fffc590e03493617f5db37e717c13070d
 
-PODFILE CHECKSUM: d903d9e7247c1e2a34f572712d3b15c704e94b99
+PODFILE CHECKSUM: be594294916970ddbe98416677284ca6571411b1
 
 COCOAPODS: 1.8.3

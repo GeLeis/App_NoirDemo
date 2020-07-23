@@ -7,7 +7,7 @@
 //
 
 #import "DetailViewController.h"
-#import <YLT_Kit.h>
+#import <YLT_Kit/YLT_Kit.h>
 #import "DataManager.h"
 #import "FavoriteViewController.h"
 
